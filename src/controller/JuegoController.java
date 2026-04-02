@@ -33,7 +33,7 @@ public class JuegoController {
                 view.mostrarMensaje("Perdiste. La palabra era: " + juego.getPalabraSecreta());
             }
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             view.mostrarMensaje(e.getMessage());
         }
     }
