@@ -18,22 +18,22 @@ public class ResultadoIntento {
     public String toString( ) {
     	StringBuilder sb = new StringBuilder();
     	
+    	// resultado = lista de 5 elems
     	for (ResultadoLetra res : resultado) {
     		switch (res) {
     			case CORRECTA:	
-    				sb.append("(VERDE)");		// VERDE
+    				sb.append("(VERDE) ");		// VERDE
     				break;
     			case PRESENTE:
-    				sb.append("(AMARILLO)");		// AMARILLO
+    				sb.append("(AMARILLO) ");		// AMARILLO
     				break;
     			case AUSENTE:
-    				sb.append("(GRIS)");		// GRIS
+    				sb.append("(GRIS) ");		// GRIS
     				break;
     		}
     	}
     	
-    	return sb.toString();
+    	return sb.toString();	// se convierte sb a String
     }
-    // AGREGAR TO STRING PARA REPRESENTAR EL RESULTADO DE
-    // LAS PALABRAS INGRESADAS (AMARILLO, GRIS, VERDE)
+
 }

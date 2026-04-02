@@ -1,8 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class Juego {
 
@@ -10,6 +12,7 @@ public class Juego {
     private int intentosRestantes;
     private List<Intento> intentos;
     private final int MAX_INTENTOS = 6;		// pensar lo de los niveles!
+    private Set<String> palabrasIntentadas;
 
     private List<String> diccionario;		// provisorio
     private boolean juegoTerminado;			// victoria o por usar todos los intentos
@@ -19,6 +22,7 @@ public class Juego {
         this.palabraSecreta = elegirPalabraAleatoria();
         this.intentosRestantes = MAX_INTENTOS;
         this.intentos = new ArrayList<>();
+        this.palabrasIntentadas = new HashSet<>();
         this.juegoTerminado = false;
     }
 
@@ -28,8 +32,18 @@ public class Juego {
     }
 
     public ResultadoIntento ingresar(String palabra) {
-        //validarEstadoJuego();
-        //validarPalabra(palabra);
+        validarEstadoJuego();
+        validarPalabra(palabra);
+
+        palabra = palabra.toLowerCase();
+
+        // se valida las palabras repetidas
+        if (palabrasIntentadas.contains(palabra)) {
+            throw new IllegalArgumentException("Ya ingresaste esa palabra");
+        }
+
+        // guarda la palabra ingresada
+        palabrasIntentadas.add(palabra);
 
         List<ResultadoLetra> resultado = evaluarPalabra(palabra);
 
@@ -43,17 +57,21 @@ public class Juego {
 
         return new ResultadoIntento(resultado);
     }
-
+    
     private void validarEstadoJuego() {
-
-    	// COMPLETAR (necesario para ResultadoIntento)
-    	
+        if (juegoTerminado) {
+            throw new IllegalStateException("El juego ya termino");
+        }
     }
 
     private void validarPalabra(String palabra) {
-    	
-    	// COMPLETAR (necesario para ResultadoIntento)
-    	
+        if (palabra == null || palabra.length() != 5) {
+            throw new IllegalArgumentException("La palabra debe tener 5 letras");
+        }
+
+        if (!diccionario.contains(palabra)) {
+            throw new IllegalArgumentException("La palabra ingresada no existe");
+        }
     }
 
     // maneja letras repetidas

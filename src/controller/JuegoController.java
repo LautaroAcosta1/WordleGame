@@ -19,6 +19,7 @@ public class JuegoController {
         view.mostrar();
     }
 
+    // recibe el input, actualiza la vista y maneja errores
     public void ingresar(String palabra) {
         try {
         	
@@ -26,7 +27,11 @@ public class JuegoController {
         	
         	view.mostrarResultado(res);
         	
-        	// COMPLETAR CON CONDICIONAL QUE MUESTRE MENSAJES SI GANO O PERDIO
+            if (juego.gano()) {
+                view.mostrarMensaje("Ganaste");
+            } else if (juego.perdio()) {
+                view.mostrarMensaje("Perdiste. La palabra era: " + juego.getPalabraSecreta());
+            }
 
         } catch (Exception e) {
             view.mostrarMensaje(e.getMessage());
