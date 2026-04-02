@@ -14,6 +14,26 @@ public class ResultadoIntento {
         return resultado;
     }
 
+    @Override
+    public String toString( ) {
+    	StringBuilder sb = new StringBuilder();
+    	
+    	for (ResultadoLetra res : resultado) {
+    		switch (res) {
+    			case CORRECTA:	
+    				sb.append("(VERDE)");		// VERDE
+    				break;
+    			case PRESENTE:
+    				sb.append("(AMARILLO)");		// AMARILLO
+    				break;
+    			case AUSENTE:
+    				sb.append("(GRIS)");		// GRIS
+    				break;
+    		}
+    	}
+    	
+    	return sb.toString();
+    }
     // AGREGAR TO STRING PARA REPRESENTAR EL RESULTADO DE
     // LAS PALABRAS INGRESADAS (AMARILLO, GRIS, VERDE)
 }

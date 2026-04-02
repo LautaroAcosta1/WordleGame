@@ -22,6 +22,10 @@ public class JuegoController {
     public void ingresar(String palabra) {
         try {
         	
+        	ResultadoIntento res = juego.ingresar(palabra);
+        	
+        	view.mostrarResultado(res);
+        	
         	// COMPLETAR CON CONDICIONAL QUE MUESTRE MENSAJES SI GANO O PERDIO
 
         } catch (Exception e) {

@@ -9,10 +9,10 @@ public class Juego {
     private String palabraSecreta;
     private int intentosRestantes;
     private List<Intento> intentos;
-    private final int MAX_INTENTOS = 6;
+    private final int MAX_INTENTOS = 6;		// pensar lo de los niveles!
 
-    private List<String> diccionario;
-    private boolean juegoTerminado;
+    private List<String> diccionario;		// provisorio
+    private boolean juegoTerminado;			// victoria o por usar todos los intentos
 
     public Juego(List<String> diccionario) {
         this.diccionario = diccionario;
@@ -24,7 +24,7 @@ public class Juego {
 
     private String elegirPalabraAleatoria() {
         Random rand = new Random();
-        // COMPLETAR
+        return diccionario.get(rand.nextInt(diccionario.size()));
     }
 
     public ResultadoIntento ingresar(String palabra) {
